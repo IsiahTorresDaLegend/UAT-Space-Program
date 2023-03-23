@@ -1,0 +1,119 @@
+/* This code was written for CSC 102 class at UAT, DOM assignment. Written by Isiah Torres. */
+
+
+body 
+{   
+    background-color: white;
+    background-image: linear-gradient(0deg, white, dodgerblue, black);
+    background-repeat: no-repeat;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h2 {
+    color: aliceblue;
+    font: bold;
+    font-style: italic;
+}
+
+h3 {
+    color: red;
+    font-style: italic;
+    
+}
+    
+img
+{   /* We can change the image size by using this after "display: block;" block-size: 250px; */
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    size-adjust: 200%;
+}
+
+button
+{   
+    width: 120px;
+    height: 40px;
+    background-color: black;
+    border-width: 5px;
+    border-radius: 10px;
+    border-color: dodgerblue;
+    font-weight: bolder;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+div {
+    text-align: left;
+    margin: 25px;
+}
+
+/* Below are for the Earth image */
+
+#earth {
+    display: block;
+    block-size: 750px;
+}
+
+#moveEarth {
+    display: block;
+    width: 50%;
+    float: right;
+    padding-top: 115px;
+    padding-right: 150px;
+    text-align: center;
+}
+
+/* Below are the table element customizations */
+
+/* Table headers (outside of table) will not have a border around it and will not use the inner table background. 
+   "background-image: initial;" means were using the initial background which is the "body" background image. */
+.borderless {
+    border: none;
+    background-image: initial;
+}
+
+
+#time{
+    font-weight: bold;
+}
+#tableTitle {
+    color: aliceblue;
+}
+/* Excluded "table" to leave out the outter border of the table. This code customizes the borders of table heads and table data sections.
+    we specify the type of border, it's color, and its thickness with "border:". border-radius curves the edges of the border, border-style
+    uses a different texture for the border, and we have a similar linear gradient going from top to bottom inside these table components. */
+ td, th {
+    border: 5px solid black;
+    border-radius: 10px;
+    border-style: ridge;
+    border-color: rgb(18, 117, 216);
+    background-image: linear-gradient(180deg, white, dodgerblue);
+} 
+
+th {
+
+    font-weight: 900;
+    font-size: x-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+table {  
+    margin: 25px;
+    width: 600px;    
+}
+
+col {
+    width: 50%;
+    
+}
+
+tbody {
+    font-weight: bold;
+}
+
+
+

@@ -1,0 +1,146 @@
+<!--This code was written for CSC 102 class at UAT, DOM assignment. Written by Isiah Torres.-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAT Space Program</title>
+
+    <!--Reference this file for styling the page consistently.-->
+    <link rel="stylesheet" type="text/css" href="tables-buttons.css"/>
+
+    <!--I wanted all the scripting to be in JavaScript files, not in the HTML.-->
+    <!--data-setup.js contains, the class declaration needed to create the "InputData" object, functions to display the data returned to the table element, and display the current time. -->
+    <script src="data-setup.js"></script>
+    <!--dataLoader-1.js creates the array "data" and fills it with many unique "InputData" objects, which are then displayed to the user periodically.-->
+    <script src="dataLoader-1.js"></script>
+    <!--global-variables.js is just variables, all the variables needed to display the data< and keep track of time. These currently need to be global to work. The scripts must be linked to...
+        the HTML file in this order or else "getData()"/"loadData()" will be "uncaught" (undefined).-->
+    <script src="global-variables.js"></script>
+    <!--music-buttons.js is music and button functionalities.-->
+    <script src="music-buttons.js"></script>
+      
+</head>
+
+<body>
+    <!--Added a div to place a header and a image at a different position.-->
+    <div id="moveEarth">
+        <h2>Welcome to the UAT Space Program.</h2>
+        <h2> Here, we capture and study data about our beautiful planet, Earth. </h2>
+        <br>
+        <br>
+        <br>
+        <!--Image by <a href="https://pixabay.com/users/alexantropov86-2691829/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2113656">Alexander Antropov</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2113656">Pixabay</a>--> 
+        <img id="earth" src="earth.jpg">
+    </div>
+    <br>
+    
+    <!--This first <table> tag makes the title on top of (outside) the whole table.
+    belongs to "borderless" because I did not want the table border and the table background applied to the UAT icon and the title.-->
+    <table class="borderless">
+         <!--tr defines a row in a table-->
+        <tr>
+           <!--td defines the data placed in the table (table data), this line adds the UAT Space logo on top of the table.-->
+            <td class="borderless"><img src="UATspaceLogo.jpg"/></td>
+            <!--(table data) this line adds this string next to the image as the title above the table.-->
+            <td class="borderless">
+                <h1 id="tableTitle">
+                    UAT Space Program
+                </h1>
+            </td>
+            <!--End of first table row (top, outside).-->
+        </tr>
+    </table>
+
+   
+    
+    <!--Second <table> tag specifies the content within the table now. border and width adjusts the appearance of the table.-->
+    <!--This is where the "data" array will be displayed to the user.-->
+    <table id="data">
+        <!--<col> adds more areas to the table (columns), if we wanted more columns, we would add more <col>.-->
+        <col>
+        <col>
+        <!--thead is table header, inside the table, but on top. -->
+        <thead>
+            <!--This is the first row inside the table.-->
+            <tr>
+                <!--th is table header, this is specifing what the header will say, since we have two columns, we need two headers if they are not the same.-->
+                <th>Data type</th>
+                <th>Reading</th>
+                <!--End of first row and table headers-->
+            </tr>
+        </thead>
+        
+        <!--tbody is the data that goes within each row and column under each header. Usually, since we have two columns, we would need two sets of <td> tags to input data in those fields.
+            However, dataRow() will add the <td> tags when the data is ready to be displayed. So, data will be filled after started instead of on page load.-->
+        <tbody>
+            <!--Give table rows "id" sp they can be manipulated and retrieved by JavaScript and CSS if needed.-->
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gps_altitude"></tr>
+            <tr id="bmpSensor_altitude"></tr>
+            <tr id="bmpSensor_pressure"></tr>
+            <tr id="bmpSensor_temp"></tr>
+            <tr id="bdigSensor_temp"></tr>
+            <tr id="cssSensor_temp"></tr>
+            <tr id="cssSensor_eCO2"></tr>
+            <tr id="cssSensor_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+            <tr id="magneticX"></tr>
+            <tr id="magneticY"></tr>
+            <tr id="magneticZ"></tr>
+            <!--End of table-->
+            
+        </tbody>
+        
+    </table>
+    
+    <!--Created a division section so it was easier to align everything below with the same margin as the table (notice there is some space from the left)-->
+    <div>
+   
+   <!--When this button is clicked, it calls on the start() function, essentially starting the data loading.-->
+    <button onclick="start();" id="startButton">Start</button>
+   <!--Stops program from what its doing when clicked. Will have to start over if started again. Disabled by default.--> 
+    <button onclick="stop();" id="stopButton" disabled=true>Stop</button>
+
+    <br>
+    <br>
+    <br>
+
+    <!--This is where the current time is displayed.-->
+    <h4>The current time is: <div id="time"></div></h4>
+    
+    <br>
+    
+    <!--Music buttons, all stop buttons are disabled by default, but when a song is playing, all other buttons are disabled until the user clicks on
+        the corresponding stop button of the song they are listening to. This prevents multiple tracks playing at once, or multiple instances of the same song
+        running at once, etc. Makes a better user experience.-->
+    <h3> Please enjoy some music while you browse. </h3>
+    <h4>Bach – Book I: Prelude and Fugue No. 8 in E Flat Minor - by Carlos Gardels</h4>
+    <button id="bachPlay" onclick="playBach();">Play</button>
+    <button id="bachStop" onclick="stopBach();" disabled=true>Stop</button>
+    <h4>Mermaid Butterfly by Soft and Furious</h4>
+    <button id="mermaidPlay" onclick="playMermaid();">Play</button>
+    <button id="mermaidStop" onclick="stopMermaid();" disabled=true>Stop</button>
+    <h4>Bass by Monplaisir</h4>
+    <button id="bassPlay" onclick="playBass();">Play</button>
+    <button id="bassStop" onclick="stopBass();" disabled=true>Stop</button>
+
+<!--End of division.-->
+    </div>
+
+    <br>
+    <br>
+    
+</body>
+</html>
